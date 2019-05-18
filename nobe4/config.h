@@ -1,14 +1,8 @@
-#ifndef CONFIG_USER_H
-#define CONFIG_USER_H
+#pragma once
 
-#include "../../config.h"
-
-#define STARTUP_SONG SONG() // Empty, annoying boot song is annoying
-
-#define MUSIC_MASK (keycode != KC_NO)
-
-#define NO_DEBUG
-#define NO_PRINT
+#define NO_ACTION_TAPPING
+#define NO_ACTION_ONESHOT
+#define NO_ACTION_MACRO
 
 /*
  * MIDI options
@@ -34,5 +28,3 @@
 
 /* override number of MIDI tone keycodes (each octave adds 12 keycodes and allocates 12 bytes) */
 // #define MIDI_TONE_KEYCODE_OCTAVES 2
-
-#endif

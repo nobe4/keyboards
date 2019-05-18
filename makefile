@@ -1,26 +1,21 @@
 default: run
 
-# Install all the macos dependencies
-install:
-	brew tap osx-cross/avr PX4/homebrew-px4
-	brew update
-	brew install avr-gcc dfu-programmer gcc-arm-none-eabi avrdude
-
 clean:
 	rm -rf ./qmk
 
 setup:
-	git clone \
-		--quiet \
-		--depth=1 \
-		--recurse-submodule \
-		--shallow-submodules \
-		https://github.com/qmk/qmk_firmware.git \
-		./qmk
+	git clone --recurse-submodules -j8 https://github.com/qmk/qmk_firmware.git ./qmk
+	./qmk/util/qmk_install.sh
 
-run:
+rev5:
 	# Update the sources
 	cp -rf ./nobe4 ./qmk/keyboards/planck/keymaps
 	cd qmk; \
 		make clean; \
 		make planck/rev5:nobe4:dfu
+
+rev6:
+	cp -rf ./nobe4 ./qmk/keyboards/planck/keymaps
+	cd qmk; \
+		make clean; \
+		make planck/rev6:nobe4:dfu-util
