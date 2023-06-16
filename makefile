@@ -3,21 +3,19 @@ clean:
 
 install:
 	git clone \
-		--depth 1 \
-		--recurse-submodules \
-		--shallow-submodules \
+		--depth 1 --no-tags \
+		--recurse-submodules --shallow-submodules \
 		--jobs 8 \
-		--no-tags \
 		https://github.com/qmk/qmk_firmware.git \
 		./qmk
 	./qmk/util/qmk_install.sh
 
 setup:
 	cp -rf ./nobe4 ./qmk/keyboards/planck/keymaps
-	cd qmk && make clean
+	make -C qmk clean
 
-rev5: setup
-	cd qmk && make planck/rev5:nobe4:flash
-
-rev6: setup
-	cd qmk && make planck/rev6:nobe4:flash
+# Automatically setup rev5 and rev6 as targets and inject the name into the make
+# command
+VERSIONS = rev5 rev6
+$(VERSIONS): setup
+	make -C qmk planck/$@:nobe4:flash
