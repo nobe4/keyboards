@@ -1,5 +1,3 @@
-BOOTLOADER = atmel-dfu
-
 MOUSEKEY_ENABLE = no
 AUDIO_ENABLE = no
 CONSOLE_ENABLE = no
