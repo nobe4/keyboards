@@ -1,5 +1,9 @@
 #pragma once
 
+// Key Overrides boilerplate
+#define KO_SHIFT(key, replacement)                                             \
+  &ko_make_basic(MOD_MASK_SHIFT, key, replacement),
+
 // Tap dance boilerplate
 #define TD_DEF(name, tap, hold)                                                \
   [name] = {                                                                   \
