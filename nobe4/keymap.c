@@ -69,8 +69,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ___,        ___,       ___,      TO(LY_CL), KC_RCMD, ___, /**/ ___, KC_RCTL,   TO(LY_OS),  ___,        ___,       ___
   ),
   [LY_OS] = LAYOUT_planck_grid(
-    KC_F1,      KC_F2,     KC_F3,    KC_F4,     KC_F5,   ___, /**/ ___, KC_VOLU,   ___,        ___,        ___,       QK_BOOT,
-    KC_F6,      KC_F7,     KC_F8,    KC_F9,     KC_F10,  ___, /**/ ___, KC_MUTE,   KC_VOLU,    ___,        ___,       ___,
+    KC_F1,      KC_F2,     KC_F3,    KC_F4,     KC_F5,   ___, /**/ ___, KC_VOLU,   ___,        ___,        ___,       ___,
+    KC_F6,      KC_F7,     KC_F8,    KC_F9,     KC_F10,  ___, /**/ ___, KC_MUTE,   KC_MPLY,    ___,        ___,       ___,
     KC_F11,     KC_F12,    KC_F13,   KC_F14,    KC_F15,  ___, /**/ ___, KC_VOLD,   ___,        ___,        ___,       ___,
     ___,        ___,       ___,      TO(LY_CL), ___,     ___, /**/ ___, ___,       ___,        ___,        ___,       ___
   ),
