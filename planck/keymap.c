@@ -1,60 +1,6 @@
-#include QMK_KEYBOARD_H
-#include "./utils.h"
-
-#define ___ KC_NO
-
-enum layouts {
-  LY_CL, // Colemak
-  LY_SY, // Symbols
-  LY_OS, // Operating System
-};
-
-enum tap_dance {
-  START, // keep first
-
-  Q_HASH,
-  Y_DLR,
-  QO_GR,
-
-  K_AMP,
-
-  Z_AST,
-  V_CIR,
-  X_PRC,
-  C_AT,
-  M_UND,
-  CO_QES,
-  DO_EX,
-
-  END, // keep last
-};
-
-#define B_GUI MT(MOD_LGUI, KC_B)
-#define BSP_CTL MT(MOD_LCTL, KC_BSPC)
+#include "../common/utils.h"
 
 // clang-format off
-tap_dance_action_t tap_dance_actions[] = {
-  TD_DEF(Q_HASH, KC_Q,    KC_HASH)
-  TD_DEF(Y_DLR,  KC_Y,    KC_DLR)
-  TD_DEF(QO_GR,  KC_QUOT, KC_GRV)
-  TD_DEF(X_PRC,  KC_X,    KC_PERC)
-  TD_DEF(C_AT,   KC_C,    KC_AT)
-  TD_DEF(Z_AST,  KC_Z,    KC_ASTR)
-  TD_DEF(K_AMP,  KC_K,    KC_AMPR)
-  TD_DEF(V_CIR,  KC_V,    KC_CIRC)
-  TD_DEF(M_UND,  KC_M,    KC_UNDS)
-  TD_DEF(CO_QES, KC_COMM, KC_QUES)
-  TD_DEF(DO_EX,  KC_DOT,  KC_EXLM)
-};
-
-// Key Overrides
-const key_override_t **key_overrides = (const key_override_t *[]){
-    KO_SHIFT(BSP_CTL,    KC_DEL)
-    KO_SHIFT(TD(CO_QES), KC_SCLN)
-    KO_SHIFT(TD(DO_EX),  KC_COLN)
-    NULL
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LY_CL] = LAYOUT(
     TD(Q_HASH), KC_W,      KC_F,     KC_P,      KC_G,    ___, /**/ ___, KC_J,      KC_L,       KC_U,       TD(Y_DLR), TD(QO_GR),
@@ -76,13 +22,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 // clang-format on
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  tap_dance_action_t *action;
-
-  if (TD(START) <= keycode && keycode <= TD(END)) {
-    TAP_DANCE_UPDATE
-  }
-
-  return true;
-}
