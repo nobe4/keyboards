@@ -10,12 +10,11 @@ install:
 		./qmk
 	./qmk/util/qmk_install.sh
 
-setup:
-	cp -rf ./nobe4 ./qmk/keyboards/planck/keymaps
-	make -C qmk clean
+	ln -s $(pwd)/planck ./qmk/keyboards/planck/keymaps/nobe4
 
 # Automatically setup rev5 and rev6 as targets and inject the name into the make
 # command
 VERSIONS = rev5 rev6
-$(VERSIONS): setup
+$(VERSIONS):
+	make -C qmk clean
 	make -C qmk planck/$@:nobe4:flash
