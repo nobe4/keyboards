@@ -11,6 +11,7 @@ install:
 	./qmk/util/qmk_install.sh
 
 	ln -s $(pwd)/planck ./qmk/keyboards/planck/keymaps/nobe4
+	ln -s $(pwd)/ferris ./qmk/keyboards/ferris/keymaps/nobe4
 
 # Automatically setup rev5 and rev6 as targets and inject the name into the make
 # command
@@ -18,3 +19,9 @@ VERSIONS = rev5 rev6
 $(VERSIONS):
 	make -C qmk clean
 	make -C qmk planck/$@:nobe4:flash
+
+.PHONY: ferris
+ferris:
+	make -C qmk clean
+	make -C qmk CONVERT_TO=rp2040_ce ferris/sweep:nobe4:uf2-split-left
+	make -C qmk CONVERT_TO=rp2040_ce ferris/sweep:nobe4:uf2-split-right
