@@ -22,6 +22,4 @@ $(VERSIONS):
 
 .PHONY: ferris
 ferris:
-	make -C qmk clean
-	make -C qmk CONVERT_TO=rp2040_ce ferris/sweep:nobe4:uf2-split-left
-	make -C qmk CONVERT_TO=rp2040_ce ferris/sweep:nobe4:uf2-split-right
+	CONVERT_TO=rp2040_ce qmk flash -kb ferris/sweep -km nobe4
