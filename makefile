@@ -10,7 +10,8 @@ install:
 		./qmk
 	./qmk/util/qmk_install.sh
 
-	qmk setup -H ./qmk -y
+	qmk config user.qmk_home=$(shell pwd)/qmk
+	qmk setup -y
 
 	ln -s $(shell pwd)/planck ./qmk/keyboards/planck/keymaps/nobe4
 	ln -s $(shell pwd)/ferris ./qmk/keyboards/ferris/keymaps/nobe4
@@ -19,8 +20,7 @@ install:
 # command
 VERSIONS = rev5 rev6
 $(VERSIONS):
-	make -C qmk clean
-	make -C qmk planck/$@:nobe4:flash
+	qmk flash -kb planck/$@ -km nobe4
 
 .PHONY: ferris
 ferris:
