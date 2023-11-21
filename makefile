@@ -10,8 +10,10 @@ install:
 		./qmk
 	./qmk/util/qmk_install.sh
 
-	ln -s $(pwd)/planck ./qmk/keyboards/planck/keymaps/nobe4
-	ln -s $(pwd)/ferris ./qmk/keyboards/ferris/keymaps/nobe4
+	qmk setup -H ./qmk -y
+
+	ln -s $(shell pwd)/planck ./qmk/keyboards/planck/keymaps/nobe4
+	ln -s $(shell pwd)/ferris ./qmk/keyboards/ferris/keymaps/nobe4
 
 # Automatically setup rev5 and rev6 as targets and inject the name into the make
 # command
