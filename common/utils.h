@@ -60,6 +60,7 @@ enum layouts {
   LY_CL, // Colemak
   LY_SY, // Symbols
   LY_OS, // Operating System
+  LY_AS, // ASDW
 };
 
 enum tap_dance {
@@ -101,11 +102,10 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 // Key Overrides
-const key_override_t **key_overrides = (const key_override_t *[]){
+const key_override_t *key_overrides[] = {
     KO_SHIFT(BSP_CTL,    KC_DEL)
     KO_SHIFT(TD(CO_QES), KC_SCLN)
     KO_SHIFT(TD(DO_EX),  KC_COLN)
-    NULL
 };
 // clang-format on
 

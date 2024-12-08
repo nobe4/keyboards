@@ -2,13 +2,7 @@ clean:
 	rm -rf ./qmk
 
 install:
-	git clone \
-		--depth 1 --no-tags \
-		--recurse-submodules --shallow-submodules \
-		--jobs 8 \
-		https://github.com/qmk/qmk_firmware.git \
-		./qmk
-	./qmk/util/qmk_install.sh
+	pip install --user qmk
 
 	qmk config user.qmk_home=$(shell pwd)/qmk
 	qmk setup -y
