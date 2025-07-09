@@ -126,7 +126,7 @@ void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
   tap_dance_tap_hold_t *tap_hold = (tap_dance_tap_hold_t *)user_data;
 
   if (state->pressed) {
-    if (state->count == 1) {
+    if (state->count == 1 && !state->interrupted) {
       if (tap_hold->leader == 1) {
         leader_start();
       } else {
