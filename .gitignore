@@ -1,2 +1,7 @@
 qmk/
 .DS_Store
+
+.devenv*
+devenv.local.nix
+# not sure about keeping this tracked
+devenv.lock
