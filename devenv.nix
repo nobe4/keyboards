@@ -3,5 +3,6 @@
 {
     packages = with pkgs; [
         qmk
+        entr
     ];
 }
