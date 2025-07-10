@@ -47,6 +47,7 @@ typedef struct {
 
 enum layouts {
   LY_CL, // Colemak
+  LY_AC, // Accents
   LY_SY, // Symbols
   LY_OS, // Operating System
   LY_AS, // ASDW
@@ -127,8 +128,11 @@ void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
 
   if (state->pressed) {
     if (state->count == 1 && !state->interrupted) {
+      // Special case: the leader sequence for accents require a special layer
+      // to disable TD(...).
       if (tap_hold->leader == 1) {
         leader_start();
+        layer_on(LY_AC);
       } else {
         tap_code16(tap_hold->hold);
       }
@@ -196,4 +200,6 @@ void leader_end_user(void) {
   else if (leader_sequence_one_key(LSFT(KC_F))) {
     SEND_STRING("LSFT");
   }
+
+  layer_off(LY_AC);
 }

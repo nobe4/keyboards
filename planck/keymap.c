@@ -9,6 +9,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ___,        ___,       ___,      KC_LSFT,   KC_SPC,  ___, /**/ ___, BSP_CTL,   OSL(LY_SY), ___,        ___,       ___
  ),
 
+ // Only keys needed for the accents, see leader_end_user.
+ // The LY_CL can't be used, because TD(...) conflicts with leader sequence.
+ // However it's understood that in an accented leader sequence, TD should be
+ // ignored.
+ [LY_AC] = LAYOUT(
+   ___,        ___,       ___,      ___,       KC_P,    ___, /**/ ___, ___,       ___,        KC_U,       ___,       ___,
+   KC_A,       KC_R,      KC_S,     KC_T,      ___,     ___, /**/ ___, ___,       ___,        KC_E,       KC_I,      KC_O,
+   ___,        ___,       KC_C,     ___,       ___,     ___, /**/ ___, ___,       ___,        ___,        ___,       ___,
+   ___,        ___,       ___,      KC_LSFT,       ___,     ___, /**/ ___, ___,       ___,        ___,        ___,       ___
+ ),
+
  [LY_SY] = LAYOUT(
    KC_0,       KC_1,      KC_2,     KC_3,      KC_PLUS, ___, /**/ ___, KC_LPRN,   KC_RPRN,    KC_LBRC,    KC_RBRC,   KC_PIPE,
    KC_ESC,     KC_4,      KC_5,     KC_6,      KC_EQL,  ___, /**/ ___, KC_LEFT,   KC_DOWN,    KC_UP,      KC_RGHT,   KC_BSLS,
