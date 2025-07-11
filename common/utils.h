@@ -157,25 +157,25 @@ void leader_end_user(void) {
   }
 
   // TODO, how to enable this for uppercase?
-  L_AC(KC_A, KC_G, EU_AACU)
-  L_AC(KC_A, KC_A, EU_AGRV)
+  L_AC(KC_A, KC_A, EU_AACU)
+  L_AC(KC_A, KC_G, EU_AGRV)
   L_AC(KC_A, KC_U, EU_ADIA)
   L_AD(KC_A, KC_T, EU_DCIR)
   L_AC(KC_A, KC_E, EU_AE)
 
-  L_AC(KC_E, KC_G, EU_EACU)
-  L_AC(KC_E, KC_A, EU_EGRV)
+  L_AC(KC_E, KC_A, EU_EACU)
+  L_AC(KC_E, KC_G, EU_EGRV)
   L_AC(KC_E, KC_U, EU_EDIA)
   L_AD(KC_E, KC_T, EU_DCIR)
 
-  L_AC(KC_O, KC_G, EU_OACU)
-  L_AC(KC_O, KC_A, EU_OGRV)
+  L_AC(KC_O, KC_A, EU_OACU)
+  L_AC(KC_O, KC_G, EU_OGRV)
   L_AC(KC_O, KC_U, EU_ODIA)
   L_AD(KC_O, KC_T, EU_DCIR)
   L_AD(KC_O, KC_E, EU_OE)
 
-  L_AC(KC_U, KC_G, EU_UACU)
-  L_AC(KC_U, KC_A, EU_UGRV)
+  L_AC(KC_U, KC_A, EU_UACU)
+  L_AC(KC_U, KC_G, EU_UGRV)
   L_AC(KC_U, KC_U, EU_UDIA)
   L_AD(KC_U, KC_T, EU_DCIR)
 
