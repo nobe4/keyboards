@@ -10,30 +10,41 @@
 void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data);
 void tap_dance_tap_hold_reset(tap_dance_state_t *state, void *user_data);
 
+bool leader_shifted = false;
+
 #define TD_DEF(name, tap, hold)                                                \
   [name] = {                                                                   \
-      .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset},     \
+      .fn = {0, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset},        \
       .user_data = (void *)&((tap_dance_tap_hold_t){tap, hold, 0, 0}),         \
   },
 
 #define TD_LEAD(name, tap)                                                     \
   [name] = {                                                                   \
-      .fn = {NULL, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset},     \
+      .fn = {0, tap_dance_tap_hold_finished, tap_dance_tap_hold_reset},        \
       .user_data = (void *)&((tap_dance_tap_hold_t){tap, 0, 0, 1}),            \
   },
 
 // Leader boilerplate
 
+// Leader Accent
 #define L_AC(l, m, r)                                                          \
   else if (leader_sequence_two_keys(l, m)) {                                   \
-    tap_code16(r);                                                             \
+    if (leader_shifted) {                                                      \
+      tap_code16(S(r));                                                        \
+    } else {                                                                   \
+      tap_code16(r);                                                           \
+    }                                                                          \
   }
 
 // With dead key
 #define L_AD(l, m, d)                                                          \
   else if (leader_sequence_two_keys(l, m)) {                                   \
     tap_code16(d);                                                             \
-    tap_code16(l);                                                             \
+    if (leader_shifted) {                                                      \
+      tap_code16(S(l));                                                        \
+    } else {                                                                   \
+      tap_code16(l);                                                           \
+    }                                                                          \
   }
 
 typedef struct {
@@ -131,6 +142,8 @@ void tap_dance_tap_hold_finished(tap_dance_state_t *state, void *user_data) {
       // Special case: the leader sequence for accents require a special layer
       // to disable TD(...).
       if (tap_hold->leader == 1) {
+        leader_shifted = get_mods() & MOD_MASK_SHIFT;
+
         leader_start();
         layer_on(LY_AC);
       } else {
@@ -156,7 +169,6 @@ void leader_end_user(void) {
     /* kept for simplified macros */
   }
 
-  // TODO, how to enable this for uppercase?
   L_AC(KC_A, KC_A, EU_AACU)
   L_AC(KC_A, KC_G, EU_AGRV)
   L_AC(KC_A, KC_U, EU_ADIA)
@@ -184,21 +196,6 @@ void leader_end_user(void) {
 
   L_AC(KC_C, KC_C, EU_CCED)
   L_AC(KC_S, KC_S, EU_SS)
-
-  // Tests after
-  else if (leader_sequence_one_key(KC_F)) {
-    tap_code16(EU_DCIR);
-    tap_code16(KC_A);
-  }
-  // else if (leader_sequence_one_key(KC_F)) {
-  //   SEND_STRING("no shift");
-  // }
-  else if (leader_sequence_one_key(S(KC_F))) {
-    SEND_STRING("S");
-  }
-  else if (leader_sequence_one_key(LSFT(KC_F))) {
-    SEND_STRING("LSFT");
-  }
 
   layer_off(LY_AC);
 }
