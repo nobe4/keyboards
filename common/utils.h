@@ -1,6 +1,7 @@
 #pragma once
 #include QMK_KEYBOARD_H
 #include "keymap_eurkey.h"
+#include "leader.h"
 
 // Key Overrides boilerplate
 #define KO_SHIFT(key, replacement)                                             \
