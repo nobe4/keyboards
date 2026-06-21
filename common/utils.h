@@ -119,12 +119,15 @@ const key_override_t *key_overrides[] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (TD(START) <= keycode && keycode <= TD(END)) {
-    tap_dance_action_t *action = &tap_dance_actions[TD_INDEX(keycode)];
+    uint8_t idx = TD_INDEX(keycode);
+
+    tap_dance_action_t *action = tap_dance_get_actions[idx];
+    tap_dance_state_t *state = tap_dance_get_state(idx);
 
     // This block executes only if the TD keycode has been tapped and not
     // held. The held state is handled by tap_dance_tap_hold_finished.
-    if (!record->event.pressed && action->state.count &&
-        !action->state.finished) {
+    if (!record->event.pressed && state && state->count &&
+        !state->finished) {
       tap_dance_tap_hold_t *tap_hold =
           (tap_dance_tap_hold_t *)action->user_data;
       tap_code16(tap_hold->tap);
