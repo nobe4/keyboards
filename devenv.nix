@@ -5,6 +5,7 @@
     qmk
     entr
     git
+    dos2unix
   ];
 
   scripts = {
