@@ -184,6 +184,8 @@ void leader_end_user(void) {
   L_AC(KC_E, KC_U, EU_EDIA)
   L_AD(KC_E, KC_T, EU_DCIR)
 
+  L_AC(KC_I, KC_U, EU_IDIA)
+
   L_AC(KC_O, KC_A, EU_OACU)
   L_AC(KC_O, KC_G, EU_OGRV)
   L_AC(KC_O, KC_U, EU_ODIA)
